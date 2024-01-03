@@ -287,4 +287,60 @@ It yields the correct result (voluntarily not shown here).
 
 <!--- 6857 --->
 
+## Project Euler 4 (largest palindrome product)
+
+_A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
+Find the largest palindrome made from the product of two 3-digit numbers._
+
+The following macro builds two nested loops : n1 goes down from 999 and n2 goes down 
+```
+1 SPC                             ;; current max
+999                               ;; initial value of n1
+Z{
+   C-u 2 RET RET * a> Z/          ;; if current max > n1*n1, break from outer loop
+   RET 1 -
+      ;; Stack:
+      ;;    3: current max
+      ;;    2: n1
+      ;;    1: n2
+   Z{
+      C-u 3 RET * a> Z/          ;; if current max > n1*n2, then break from inner loop
+      C-u 2 RET *
+         ;; Stack:
+         ;;    4: current max
+         ;;    3: n1
+         ;;    2: n2
+         ;;    1: n1*n2
+     RET [] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL RET v v a=  ;; is n1*n2 palindromic?
+     Z[ C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB Z]                                     ;; if yes, update current max if relevant
+     DEL                         ;; delete n1*n2
+     1 - RET 100 a< Z/           ;; decrease n2; if n2 < 100, break from inner loop
+  Z}
+  DEL                            ;; delete n2
+     ;; Stack:
+     ;;    2: current max
+     ;;    1: n1
+  1 - RET 101 a< Z/              ;; decrease n1; if n1 < 101, break from outer loop
+Z}
+DEL                              ;; delete n1
+```
+
+As an one-liner:
+```
+1 SPC 999 Z{ C-u 2 RET RET * a> Z/ RET 1 - Z{ C-u 3 RET * a> Z/ C-u 2 RET * RET [] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL RET v v a= Z[ C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB Z] DEL 1 - RET 100 a< Z/ Z} DEL 1 - RET 101 a< Z/ Z} DEL
+```
+
+It yields the correct result (voluntarily not shown here) in a few minutes.
+
+<!--- 906609 ---> 
+
+In above macro, palindromic test is based on the construction of a reverse number by building a list of all digits of the said number. Below is a variant of with test based on the building of the reverse number by successive divisions by 10. It takes more time to execute.
+
+```
+1 SPC 999 Z{ C-u 2 RET RET * a> Z/ RET 1 - Z{ C-u 3 RET * a> Z/ C-u 2 RET * 
+;; RET [] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL RET v v a=
+RET RET 0 TAB Z{ RET 0 a= Z/ RET 10 \ TAB 10 % C-u 3 C-M-i 10 * + TAB Z} DEL a=
+Z[ C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB Z] DEL 1 - RET 100 a< Z/ Z} DEL 1 - RET 101 a< Z/ Z} DEL
+```
+
 ## (end of file)
