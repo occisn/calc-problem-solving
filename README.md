@@ -2,6 +2,8 @@
 
 Hobby project using the macro programming features of stack-based GNU Emacs Calc, leading to esoteric-looking code, to solve numeric puzzles as those proposed by Project Euler or Rosetta code.
 
+_All information and codes are included in the present README file._
+
 ## Introduction
 
 Calc is a stack-based calculator included in GNU Emacs. It can be used as a standard calculator similar to HP28/48 calculators, or for advanced mathematics.
@@ -271,5 +273,18 @@ The same as a one-liner:
 It yields the correct result (voluntarily not shown here).
 
 <!--- 4613732 --->
+
+## Project Euler 3 (largest prime factor)
+
+_The prime factors of 13195 are 5, 7, 13 and 29. What is the largest prime factor of the number 600851475143?_ [(source)](https://projecteuler.net/problem=3)
+
+We use the macro seen above to calculate the largest prime factor of a number.
+```
+600851475143 k f v v v r 1
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!--- 6857 --->
 
 ## (end of file)
