@@ -205,4 +205,40 @@ a SPC b Z( c d Z( C-j
 1 Z) DEL 1 Z)
 ```
 
+## Project Euler 1 (multiples of 3 or 5)
+
+_If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23. Find the sum of all the multiples of 3 or 5 below 1000._
+[(source)](https://projecteuler.net/problem=1)
+
+The following snippet pops the first element of the stack and replaces by 0 if it is a multiple of 3 or 5, and by non-zero otherwise.
+```
+RET 3 % Z[ 5 % Z: DEL 0 Z]
+```
+
+Proposed code is the following:
+```
+1000 SPC                    ;; puzzle parameter
+1 - 0 TAB 1 TAB
+                            ;; Stack is:
+                            ;;    3: 0    ;; accumulator for sum
+                            ;;    2: 1
+                            ;;    1: 999
+Z(
+RET
+RET 3 % Z[ 5 % Z: DEL 0 Z]  ;; non-multiple of 3 or 5?
+Z[ DEL Z: + Z]              ;; if multiple, add to accumulator
+1 Z)
+```
+
+The same as a one-liner:
+```
+1000 SPC 1 - 0 TAB 1 TAB Z( RET RET 3 % Z[ 5 % Z: DEL 0 Z] Z[ DEL Z: + Z] 1 Z)
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!--- 1:  233168 --->
+ 
+For 10000 as an input, it returns 23331668 in roughly 11 seconds on my (normal) laptop (as of January 2024).
+
 ## (end of file)
