@@ -343,4 +343,18 @@ RET RET 0 TAB Z{ RET 0 a= Z/ RET 10 \ TAB 10 % C-u 3 C-M-i 10 * + TAB Z} DEL a=
 Z[ C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB Z] DEL 1 - RET 100 a< Z/ Z} DEL 1 - RET 101 a< Z/ Z} DEL
 ```
 
+## Project Euler 5 (smallest multiple)
+
+
+_2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?_ [(source)](https://projecteuler.net/problem=5)
+
+```
+v x 20 RET       ;; iota: returns [1, ..., 20]
+v R k l          ;; reduce with 'k l' i.e. reduce with lcm
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!--- 232792560 --->
+
 ## (end of file)
