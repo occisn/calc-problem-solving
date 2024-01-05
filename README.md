@@ -112,26 +112,33 @@ C-u 2 RET    (copy) copy first two elements of the stack
 C-j          (copy) element #2 is copied on top of the stack; former stack content moves downward by 1 line
 C-u 5 C-j    (copy) element #5 is copied on top of the stack; former stack content moves downward by 1 line
 TAB          (move) swap two last elements
-C-u 5 TAB    (move downward) element #1 is taken out, elements 2-5 move to the top and become 1-4,
+C-u 5 TAB    (move downward) element #1 is taken out, elements 2-5 move to the top
+                             and become 1-4,
                              and former element #1 is inserted as element #5
-C-u 5 C-M-i  (move upward) element #5 is taken out, elements 1-4 move to the bottom and become 2-5, 
+C-u 5 C-M-i  (move upward) element #5 is taken out, elements 1-4 move to the bottom
+                           and become 2-5, 
                            and former element #5 is inserted as element #1
 DEL          (delete) remove top element from the stack
 M-DEL        (delete) remove second element from the stack, former lines 3-... move towards the top
 C-u 4 M-DEL  (delete) element #4 is deleted, former lines 5-... move towards the top
+C-u 0 DEL    (delete) empty stack
+~ DEL        (delete) delete the first n+1 elements of the stack,
+                      where n is the top element of the stak
 ```
 
-See [relevant entry of the manual](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Stack-Manipulation).
+For basic stack manipulation commands, see [relevant entry of the manual](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Stack-Manipulation).
+On the use of `~`, see the section of the manual on [prefix argument](https://www.gnu.org/software/emacs/manual/html_node/calc/Prefix-Arguments.html).
 
 Derived more sophisticated macros:
 ```
-C-u 3 C-M-i C-u 4 TAB                             ;; swap elements #3 and #4
-C-u 4 C-M-i 1 + C-u 4 TAB                         ;; add 1 to element #4
-C-u 4 C-M-i + C-u 3 TAB                           ;; consume element at top of the stack
-                                                  ;; and add it to initial element #4
-C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB  ;; compare element #1 (not consumed) to                                                ;; element #4 of the stack;
-                                                  ;; if element #1 > element #4, 
-                                                  ;; element #4 is replaced by element #1
+C-u 3 C-M-i C-u 4 TAB                             ;; (swap) swap elements #3 and #4
+C-u 4 C-M-i 1 + C-u 4 TAB                         ;; (add) add 1 to element #4
+C-u 4 C-M-i + C-u 3 TAB                           ;; (add) consume element at top of the stack
+                                                  ;;    and add it to initial element #4
+C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB  ;; (compare and replace) compare element #1
+                                                  ;;    (not consumed) to element #4 of the
+                                                  ;;    stack; if element #1 > element #4, 
+                                                  ;;    element #4 is replaced by element #1
 ```
 
 ### Digits 
@@ -141,12 +148,12 @@ C-u 4 C-M-i C-u 2 RET a> Z[ DEL RET Z] C-u 4 TAB  ;; compare element #1 (not con
 H L F 1 +
 ```
 
-**First m digits.** The following macro returns the first m (element #1 of stack, consumed) digits of number n (element #2 of stack, consumed). For instance: 12345678, 3 --> 123.
+**Number formed with first m digits.** The following macro returns the number formed with first m (element #1 of stack, consumed) digits of number n (element #2 of stack, consumed). For instance: 12345678, 3 --> 123.
 ```
 TAB RET H L F 1 + C-u 3 C-M-i - n f S F
 ```
 
-**Last m digits.** The following macro returns the last m (element #1 of the stack, consumed) digits of number n (element #2 of the stack, consumed). For instance: 123456789, 3 --> 789.
+**Number formed with last m digits.** The following macro returns the number formed with last m (element #1 of the stack, consumed) digits of number n (element #2 of the stack, consumed). For instance: 123456789, 3 --> 789.
 ```
 10 TAB ^ %
 ```
@@ -171,14 +178,39 @@ C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
 1 TAB Z{ RET 10 % RET C-u 4 C-M-i * C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
 ```
 
+**List of digits within the stack.** By successive divisions by 10, the following macro returns the list of digits of the first element of the stack (consumed) within the stack, with the number of digits as new top element of the stack. For instance: 145 --> 5 4 1 3 (upward in the stack).
+```
+0 TAB Z{ RET 10 % RET C-u 4 TAB - TAB 1 + TAB RET 0 a= Z/ 10 \ Z} DEL
+```
+
+**List of digits as list.** By successive divisions by 10, the following macro returns the list of digits of the first element of the stack (consumed), as a list. For instance: 145 --> [1, 4, 5]
+```
+[] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
+```
+
+In order to _compare the above two macros to return the list of digits of a given number_, let's operate them on all numbers from 1 to 5000. The macro returning the digits as a list is quicker.
+
+```
+;; list of digits within the stack:
+;; --------------------------------
+1 SPC 5000 Z( 
+   0 TAB Z{ RET 10 % RET C-u 4 TAB - TAB 1 + TAB RET 0 a= Z/ 10 \ Z} DEL
+   ~ DEL  ;; clean stack
+1 Z)
+;; 40 s
+
+;; list of digits as a list:
+;; -------------------------
+1 SPC 5000 Z(
+   [] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
+   DEL
+1 Z)
+;; 30 s
+```
+
 **Reverse number.** By successive divisions by 10, the following macro reverses the number which is the first element of the stack (consumed). For instance: 145 --> 541
 ```
 0 TAB Z{ RET 0 a= Z/ RET 10 \ TAB 10 % C-u 3 C-M-i 10 * + TAB Z} DEL
-```
-
-**List of digits.** By successive divisions by 10, the following macro returns the list of digits of the first element of the stack (consumed), as a list. For instance: 145 --> [1, 4, 5]
-```
-[] TAB Z{ RET 10 % RET C-u 4 C-M-i v k C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
 ```
 
 **List of non-zero digits.** The following macro returns the list of non-zero digits of the first element of the stack (consumed), as a list. For instance: 1040050 --> [1, 4, 5]
