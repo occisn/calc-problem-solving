@@ -392,7 +392,7 @@ It yields the correct result (voluntarily not shown here).
 ## Project Euler 7 (10 001st prime)
 
 _By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
-What is the 10 001st prime number?_ [(source)]'https://projecteuler.net/problem=7)
+What is the 10 001st prime number?_ [(source)](https://projecteuler.net/problem=7)
 
 Let's take advantage of `k n` which returns next prime.
 
