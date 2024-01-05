@@ -389,6 +389,22 @@ It yields the correct result (voluntarily not shown here).
 
 <!--- 232792560 --->
 
+## Project Euler 7 (10 001st prime)
+
+_By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+What is the 10 001st prime number?_ [(source)]'https://projecteuler.net/problem=7)
+
+Let's take advantage of `k n` which returns next prime.
+
+```
+2 SPC                       ;; first prime
+10001 SPC 1 - Z< k n Z>     ;; repeat 10000 times 'k n', i.e. 'next prime'
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!--- 104743 --->
+
 ## Annex: Emacs functions to quickly test Calc macros in Calc
 
 When the macro is written in any file:
