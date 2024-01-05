@@ -389,4 +389,34 @@ It yields the correct result (voluntarily not shown here).
 
 <!--- 232792560 --->
 
+## Annex: Emacs functions to quickly test Calc macros in Calc
+
+When the macro is written in any file:
+``` emacs-lisp
+(defun my/calc-read-macro ()
+  "Interpret selected region as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03)."
+  (interactive)
+  (if (use-region-p)
+      (progn
+        (read-kbd-macro (region-beginning) (region-end))
+        (let ((w (get-buffer-window "*Calculator*")))
+          (if (null w)
+              (message "No window is displaying Calc!")
+            (select-window w))))
+    (message "No region selected!")))
+```
+
+When the macro is written in markdown file:
+```emacs-lisp
+(defun my/calc-select-markdown-code-and-read-calc-macro ()
+  "Select markdown code block surrounding the cursor, interpret it as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03)."
+  (interactive)
+  (search-backward "```")
+  (next-line)
+  (call-interactively 'set-mark-command)
+  (search-forward "```")
+  (beginning-of-line)
+  (my/calc-read-macro))
+  ```
+
 ## (end of file)
