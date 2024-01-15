@@ -58,9 +58,10 @@ f x    max
 ### Primes
 
 ```
-k f   prime factorization as vector
-k n   next prime
-k p   is prime? (does not consume element, and print result in echo)
+k f      prime factorization as vector
+k n      next prime
+k p      is prime? (does not consume element, and print result in echo)
+prime(k) is prime? 0/1
 ```
 
 **Largest prime factor.** The following macro returns the largest prime factor of the top element of the stack (consumed). It first computed the prime decomposition (`k f`), reverses it (`v v`) and extracts the first element. For instance: 600851475143 --> 6857.
@@ -123,7 +124,7 @@ M-DEL        (delete) remove second element from the stack, former lines 3-... m
 C-u 4 M-DEL  (delete) element #4 is deleted, former lines 5-... move towards the top
 C-u 0 DEL    (delete) empty stack
 ~ DEL        (delete) delete the first n+1 elements of the stack,
-                      where n is the top element of the stak
+                      where n is the top element of the stack
 ```
 
 For basic stack manipulation commands, see [relevant entry of the manual](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Stack-Manipulation).
@@ -461,6 +462,7 @@ _The four adjacent digits in the 1000-digit number that have the greatest produc
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
+
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?_ [(source)](https://projecteuler.net/problem=8)
 
 ```
@@ -504,6 +506,42 @@ Z} DEL
 It yields the correct result (voluntarily not shown here), in about 30 seconds on my standard laptop.
 
 <!-- 23514624000 -->
+
+## Project Euler 9 (Special Pythagorean Triplet)
+
+_A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+a2 + b2 = c2
+For example, 32 + 42 = 9 + 16 = 25 = 52.
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc._  [(source)](https://projecteuler.net/problem=9)
+
+```
+1000 SPC 3 Z(                     ;; for c from n downto 3
+   RET 1 - TAB RET 1 + 1000 - n C-u 3 C-M-i f n
+   TAB RET 1000 - n 2 \ 2 f x C-u 3 C-M-i
+   ;; Stack
+   ;;   3: c
+   ;;   2: max(2, (n-c)\2)
+   ;;   1: min(c-1, n-c-1)
+   C-u 2 RET a> Z[ DEL DEL Z: TAB ;; if min(...) > max(...)
+      Z(                          ;; for b = min(...) downto max(...)
+         C-u 2 RET + 1000 - n
+         ;; Stack
+         ;;    3: c
+         ;;    2: b
+         ;;    1: a = 1000-b-c
+         C-u 3 RET RET * TAB RET * + TAB RET * a= ;; if a^2+b^2 = c^2
+         Z[ C-u 3 RET * * C-u 4 TAB Z]            ;; keep a*b*c above on the stack
+      DEL DEL
+      1 n Z)
+   Z]
+   DEL
+1 n Z)
+```
+
+It yields the correct result (voluntarily not shown here), after a certain time on my standard laptop.
+
+<!-- 31875000 --> 
 
 ## Annex: Emacs functions to quickly test Calc macros in Calc
 
