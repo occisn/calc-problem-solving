@@ -84,10 +84,11 @@ a<  return 1 if element #2 < element #1, and 0 otherwise
 ### Vector/list manipulation
 
 ```
+v l         ;; length
 v p         ;; pack stack in a vector
 v v         ;; reverse vector
-v r 1       ;; extract 1st element of vector
-v x 20 RET  ;; returns vector [1, ..., 20]
+v r 3 RET   ;; extract 3rd element of vector (for macro, use prefix argument ~)
+v x 20 RET  ;; returns vector [1, ..., 20]   (for macro, use prefix argument ~)
 v R ...     ;; reduce vector according to macro '...'
 V M ...     ;; map macro '...' to list
 v k         ;; add at the beginning of the list (cons)
@@ -229,7 +230,7 @@ In order to _compare the above two macros to return the list of digits of a give
 
 ### Divisors
 
-**Number of divisors** The following macro, in detailed then compact form, test all integers between 1 and the integer square root of n (top element of the stack, consumed) to compute the number of divisors of n.
+**Number of divisors (version 1, slow)** The following macro, in detailed then compact form, tests all integers between 1 and the integer square root of n (top element of the stack, consumed) to compute the number of divisors of n.
 
 Specific case when n >= 4:
 ```
@@ -285,6 +286,66 @@ Z:
 Z]
 ```
 
+**Number of divisors (version 2, quick)** The following macro, in detailed then compact form, computes the number fo divisors of n (>= 4) by using its decomposition into prime numbers (built-in function `k f`), and the following formula: if n = p1^a1...pr^ar then its number of divisors is (1+a1)...(1+ar).
+
+```
+k f                              ;; prime decomposition as vector
+1 SPC TAB 0 SPC TAB 0 SPC TAB
+RET v l 1 SPC TAB 
+;; Stack:
+;;   6: 0                        ;; current nb of divisors
+;;   5: 0                        ;; current prime
+;;   4: 0                        ;; nb of current prime
+;;   3: [2, 2, 3, 5...]          ;; primes
+;;   2: 1
+;;   1: 14                       ;; nb of primes
+Z(
+   ;; Stack:
+   ;;    5: 5                    ;; current nb of divisors
+   ;;    4: 2                    ;; nb of current prime 
+   ;;    3: 3                    ;; current prime
+   ;;    2: [2, 2, 3, 5...]      ;; primes
+   ;;    1: i
+   C-j TAB ~ v r RET             ;; extract new prime
+   ;; Stack:
+   ;;    6: 5                    ;; current nb of divisors
+   ;;    5: 2                    ;; nb of current prime 
+   ;;    4: 3                    ;; current prime
+   ;;    3: [2, 2, 3, 5...]      ;; primes
+   ;;    2: 5                    ;; new prime
+   ;;    1: 5                    ;; copy of new prime
+   C-u 4 C-j a= Z[               ;; if same prime as before...
+      ;; Stack:
+      ;;    5: 5                 ;; current nb of divisors
+      ;;    4: 2                 ;; nb of current prime 
+      ;;    3: 3                 ;; current prime
+      ;;    2: [2, 2, 3, 5...]   ;; primes
+      ;;    1: 5                 ;; new prime
+      DEL
+      C-u 3 C-M-i 1 + C-u 3 TAB  ;; increase nb of current prime
+   Z:                            ;; if new prime...
+      ;; Stack:
+      ;;    5: 5                 ;; current nb of divisors
+      ;;    4: 2                 ;; nb of current prime 
+      ;;    3: 3                 ;; current prime
+      ;;    2: [2, 2, 3, 5...]   ;; primes
+      ;;    1: 5                 ;; new prime
+      C-u 4 C-M-i 1 + C-u 5 C-M-i * C-u 4 TAB  ;; update current nb of divisors
+      1 SPC C-u 4 TAB                          ;; update nb of current prime
+      C-u 3 M-DEL TAB                          ;; update current prime
+   Z]
+1 Z)
+;; Stack:
+;;    5: 5                       ;; current nb of divisors
+;;    4: 2                       ;; nb of current prime 
+;;    3: 3                       ;; current prime
+;;    2: [2, 2, 3, 5...]         ;; primes
+DEL DEL 1 + *
+```
+
+```
+k f 1 SPC TAB 0 SPC TAB 0 SPC TAB RET v l 1 SPC TAB Z( C-j TAB ~ v r RET C-u 4 C-j a= Z[ DEL C-u 3 C-M-i 1 + C-u 3 TAB Z: C-u 4 C-M-i 1 + C-u 5 C-M-i * C-u 4 TAB 1 SPC C-u 4 TAB C-u 3 M-DEL TAB Z] 1 Z) DEL DEL 1 + *
+```
 
 ### Nested 'for' loops
     
