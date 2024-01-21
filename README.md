@@ -292,7 +292,7 @@ Z]
 RET f Q 'sum(mod($2,k)=0,k,1,$1) RET 2 * C-u 3 TAB RET * a= -
 ```
 
-**Number of divisors (version 3, quickest)** The following macro, in detailed then compact form, computes the number fo divisors of n (>= 4) by using its decomposition into prime numbers (built-in function `k f`), and the following formula: if n = p1^a1...pr^ar then its number of divisors is (1+a1)...(1+ar).
+**Number of divisors (version 3, quickest)** The following macro, in detailed then compact form, computes the number of divisors of n (>= 4) by using its decomposition into prime numbers (built-in function `k f`), and the following formula: if n = p1^a1...pr^ar then its number of divisors is (1+a1)...(1+ar).
 
 ```
 k f                              ;; prime decomposition as vector
