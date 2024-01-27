@@ -844,11 +844,14 @@ It yields the correct result (voluntarily not shown here).
 When the macro is written in any file:
 ``` emacs-lisp
 (defun my/calc-read-macro ()
-  "Interpret selected region as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03)."
+  "Interpret selected region as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03, last modification 2024-01-27)."
   (interactive)
   (if (use-region-p)
-      (progn
+      (let* ((region-as-string (buffer-substring-no-properties (region-beginning) (region-end))))
         (read-kbd-macro (region-beginning) (region-end))
+        (message "Ready to execute (X): %s ... %s"
+                 (substring region-as-string 0 10)
+                 (substring region-as-string -10 nil))
         (let ((w (get-buffer-window "*Calculator*")))
           (if (null w)
               (message "No window is displaying Calc!")
@@ -859,14 +862,15 @@ When the macro is written in any file:
 When the macro is written in markdown file:
 ```emacs-lisp
 (defun my/calc-select-markdown-code-and-read-calc-macro ()
-  "Select markdown code block surrounding the cursor, interpret it as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03)."
+  "Select markdown code block surrounding the cursor, interpret it as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03, last modification 2024-01-27)."
   (interactive)
   (search-backward "```")
   (next-line)
+  (beginning-of-line)
   (call-interactively 'set-mark-command)
   (search-forward "```")
   (beginning-of-line)
   (my/calc-read-macro))
-  ```
+```
 
 ## (end of file)
