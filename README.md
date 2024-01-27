@@ -95,6 +95,22 @@ v k         ;; add at the beginning of the list (cons)
 |           ;; append
 ```
 
+### Matrix manipulation
+
+```
+v c         ;; extract matrix column
+```
+
+Let's suppose that stack is:
+```
+5: [[ ... ]]  ;; matrix
+4:
+3: 6          ;; row number
+2; 6          ;; column number
+1: 5          ;; offset (stack position of matrix)
+```
+then the macro `1 - ~ C-j TAB ~ v c TAB ~ v c` returns the relevant element of the matrix (matrix is not consumed, but row number, column number and offset are consumed).
+
 ### Control flow commands
 
 ```
@@ -132,6 +148,8 @@ C-u 0 DEL    (delete) empty stack
 
 For basic stack manipulation commands, see [relevant entry of the manual](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Stack-Manipulation).
 On the use of `~`, see the section of the manual on [prefix argument](https://www.gnu.org/software/emacs/manual/html_node/calc/Prefix-Arguments.html).
+
+Caution: if n be the top element of stack, `~ C-j` copies n-th element of stack ,_where n is considered after consumption of the top element_, to the top
 
 Derived more sophisticated macros:
 ```
@@ -351,21 +369,6 @@ DEL DEL 1 + *
 
 ```
 k f 1 SPC TAB 0 SPC TAB 0 SPC TAB RET v l 1 SPC TAB Z( C-j TAB ~ v r RET C-u 4 C-j a= Z[ DEL C-u 3 C-M-i 1 + C-u 3 TAB Z: C-u 4 C-M-i 1 + C-u 5 C-M-i * C-u 4 TAB 1 SPC C-u 4 TAB C-u 3 M-DEL TAB Z] 1 Z) DEL DEL 1 + *
-```
-
-### Nested 'for' loops
-    
-The below macro corresponds to nested loops `for n1 from a to b { for n2 from to d ...}`.
-```
-a SPC b Z( c d Z( C-j
-      ;; Stack:
-      ;; 3: n1
-      ;; 2: n2
-      ;; 1: n1
-
-   ;; do something which consumes elements #1 and #2
-      
-1 Z) DEL 1 Z)
 ```
 
 ### Algebraic expressions
