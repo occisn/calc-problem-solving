@@ -58,10 +58,11 @@ f x    max
 ### Primes
 
 ```
-k f      prime factorization as vector
-k n      next prime
-k p      is prime? (does not consume element, and print result in echo)
-prime(k) is prime? 0/1
+k f             prime factorization as vector
+k n             next prime
+k p             is prime? (does not consume element, and print result in echo)
+prime(k)        is prime? 0/1
+'prime($1) RET  is prime? 0/1
 ```
 
 **Largest prime factor.** The following macro returns the largest prime factor of the top element of the stack (consumed). It first computed the prime decomposition (`k f`), reverses it (`v v`) and extracts the first element. For instance: 600851475143 --> 6857.
@@ -675,6 +676,33 @@ Find the product abc._
 It yields the correct result (voluntarily not shown here), after a certain time on my standard laptop.
 
 <!-- 31875000 --> 
+
+## Project Euler 10: Summation of Primes
+
+_The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.  
+Find the sum of all the primes below two million._  
+[(source)](https://projecteuler.net/problem=10)
+
+The following code should work but it does not finish in a reasonable time on my standard laptop:
+```
+0 SPC 2 SPC 19999 Z(
+   RET 'prime($) RET
+   Z[ + Z: DEL Z]
+1 Z)
+```
+
+This one is fine:
+```
+'prime(k)*k RET  ;; = k if k prime and 0 otherwise
+'k RET 
+2 SPC
+1999999
+a+
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!-- 142913828922 -->
 
 ## Project Euler 11: Largest Product in a Grid
 
