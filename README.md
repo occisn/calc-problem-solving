@@ -1,3 +1,5 @@
+<!-- conventional commits: https://www.conventionalcommits.org/en/v1.0.0/ -->
+
 # calc-programming
 
 Hobby project using the macro programming features of stack-based GNU Emacs Calc, leading to esoteric-looking code, to solve numeric puzzles as those proposed by Project Euler or Rosetta code.
@@ -7,9 +9,23 @@ _All information and codes are included in the present README file._
 ## Table of contents
 
 [Introduction](#introduction)  
+
 [How to use below codes](#how-to-use-below-codes)  
+
 [Standard Calc commands and useful macros](#standard-calc-commands-and-useful-macros)  
+- [Calculations](#calculations)  
+- [Primes](#primes)  
+- [Comparison](#comparison)  
+- [Vector/list manipulation](#vectorlist-manipulation)  
+- [Matrix manipulation](#matrix-manipulation)  
+- [Control flow commands](#control-flow-commands)  
+- [Stack manipulation commands](#stack-manipulation-commands)  
+- [Digits](#digits)  
+- [Divisors](#divisors)  
+- [Algebraic expressions](#algebraic-expressions)
+
 Project Euler problems: [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum)  
+
 [Annex](#annex-emacs-functions-to-quickly-test-calc-macros-in-calc)
 
 ## Introduction
@@ -386,6 +402,8 @@ The below macro, based on `a+` calculates the sum of k^2 for k=1...100:
 ```
 'k*k RET 'k RET 1 SPC 100 a+ RET
 ```
+
+It seems that there is no command to minimize a formula _on integer values_.
 
 ## Project Euler 1: Multiples of 3 or 5
 
