@@ -79,6 +79,12 @@ f n    min
 f x    max
 ```
 
+**Modular exponentiation.** The following, using [right-to-left binary method](https://en.wikipedia.org/wiki/Modular_exponentiation#Right-to-left_binary_method), replaces stack containing `3: b 2: e 1: m` by `b^e mod m`
+
+```
+1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL
+```
+
 ### Primes
 
 ```
