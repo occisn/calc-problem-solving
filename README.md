@@ -24,7 +24,7 @@ _All information and codes are included in the present README file._
 - [Divisors](#divisors)  
 - [Algebraic expressions](#algebraic-expressions)
 
-Project Euler problems: [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum)  
+Project Euler problems: [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), [97](#project-euler-97-large-non-mersenne-prime)  
 
 [Annex](#annex-emacs-functions-to-quickly-test-calc-macros-in-calc)
 
@@ -1079,8 +1079,24 @@ _Work out the first ten digits of the sum of the following one-hundred 50-digit 
 It yields the correct result (voluntarily not shown here).
 
 <!-- 5500276230 -->
+
+## Project Euler 97: Large Non-Mersenne Prime
  
- 
+_The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime of the form 2^6972593 - 1; it contains exactly 2 098 960 digits. Subsequently other Mersenne primes, of the form 2^p - 1, have been found which contain more digits.  
+However, in 2004 there was found a massive non-Mersenne prime which contains 2 357 207 digits: 28433 x 2^7830457 + 1.  
+Find the last ten digits of this prime number._
+[(source)](https://projecteuler.net/problem=97)
+
+A possible solution directly derives from modular exponentiation algorithm presented above:
+
+```
+2 SPC 7830457 SPC 10000000000 SPC 1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL 28433 * 1 + 10000000000 %
+```
+
+It immediately yields the correct result (voluntarily not shown here).
+
+<!-- 8739992577 -->
+
 ## Annex: Emacs functions to quickly test Calc macros in Calc
 
 When the macro is written in any file:
