@@ -1090,7 +1090,11 @@ Find the last ten digits of this prime number._
 A possible solution directly derives from modular exponentiation algorithm presented above:
 
 ```
-2 SPC 7830457 SPC 10000000000 SPC 1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL 28433 * 1 + 10000000000 %
+2 SPC
+7830457 SPC
+10000000000 SPC
+1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL ;; modular exponentiation
+28433 * 1 + 10000000000 %
 ```
 
 It immediately yields the correct result (voluntarily not shown here).
