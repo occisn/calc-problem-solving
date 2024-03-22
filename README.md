@@ -24,7 +24,9 @@ _All information and codes are included in the present README file._
 - [Divisors](#divisors)  
 - [Algebraic expressions](#algebraic-expressions)
 
-Project Euler problems: [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), [97](#project-euler-97-large-non-mersenne-prime)  
+**Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), 
+[48](#project-euler-48-self-powers),
+[97](#project-euler-97-large-non-mersenne-prime)  
 
 [Annex](#annex-emacs-functions-to-quickly-test-calc-macros-in-calc)
 
@@ -151,8 +153,9 @@ Z( ... 1 Z)       ;; 'for' loop (*)
 20 Z< ... Z>      ;; repeat '...' 20 times
 Z{ ... Z/ ... Z}  ;; repeat until
 ```
-(*) Explanations for 'for' loop in exercise 6 of ['Programming tutorial'](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Programming-Tutorial) part of manual
-Note: the loop shall not be empty: `3 4 Z( ... 1 n Z)` seems to fail.
+(*) Explanations for 'for' loop in exercise 6 of ['Programming tutorial'](https://www.gnu.org/software/emacs/manual/html_mono/calc.html#Programming-Tutorial) part of manual  
+"Just before executing the loop body, it pushes the current loop counter. When the loop body finishes, it pops the “step,” i.e., the amount by which to increment the loop counter."  
+Note: the loop shall not be empty: `3 4 Z( ... 1 n Z)` seems to fail.  
 Note: the loop shall not be from 1 to 1: `1 1 Z( ... 1 n Z)` seems to fail. 
 
 ### Stack manipulation commands
@@ -1079,6 +1082,28 @@ _Work out the first ten digits of the sum of the following one-hundred 50-digit 
 It yields the correct result (voluntarily not shown here).
 
 <!-- 5500276230 -->
+
+## Project Euler 48: Self Powers
+
+_The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317  
+Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000._  
+[(source)](https://projecteuler.net/problem=48)
+
+A possible solution directly derives from modular exponentiation algorithm presented above:
+
+```
+0 SPC ;; sum
+1 SPC 1000 Z(
+   RET 10000000000 SPC
+   1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL ;; modular exponentiation
++ 
+1 Z)
+10000000000 %
+```
+
+It yields the correct result (voluntarily not shown here) in around 20s on my standard laptop.
+
+<!-- 9110846700 -->
 
 ## Project Euler 97: Large Non-Mersenne Prime
  
