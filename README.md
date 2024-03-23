@@ -1131,10 +1131,17 @@ It yields the correct result (voluntarily not shown here) in around 20s on my st
  
 _The first known prime found to exceed one million digits was discovered in 1999, and is a Mersenne prime of the form 2^6972593 - 1; it contains exactly 2 098 960 digits. Subsequently other Mersenne primes, of the form 2^p - 1, have been found which contain more digits.  
 However, in 2004 there was found a massive non-Mersenne prime which contains 2 357 207 digits: 28433 x 2^7830457 + 1.  
-Find the last ten digits of this prime number._
+Find the last ten digits of this prime number._  
 [(source)](https://projecteuler.net/problem=97)
 
-A possible solution directly derives from modular exponentiation algorithm presented above:
+Solution using modulo forms:
+```
+2 S-M 10000000000 SPC  ;; 2 mod 10000000000
+7830457 ^
+28433 * 1 + 
+```
+
+Another solution directly using the algorithm presented above which calculated modular exponentiation:
 
 ```
 2 SPC
@@ -1144,7 +1151,7 @@ A possible solution directly derives from modular exponentiation algorithm prese
 28433 * 1 + 10000000000 %
 ```
 
-It immediately yields the correct result (voluntarily not shown here).
+Both immediately yields the correct result (voluntarily not shown here).
 
 <!-- 8739992577 -->
 
