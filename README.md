@@ -1096,10 +1096,25 @@ _The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317
 Find the last ten digits of the series, 1^1 + 2^2 + 3^3 + ... + 1000^1000._  
 [(source)](https://projecteuler.net/problem=48)
 
-A possible solution directly derives from modular exponentiation algorithm presented above:
+
+Solution using modulo forms:
 
 ```
-0 SPC ;; sum
+1 S-M 10000000000 SPC  ;; 1 mod 10000000000
+0 SPC                  ;; current sum
+1 SPC 1000
+Z(
+   RET C-u 4 C-j TAB * TAB ^ +
+1 Z)
+TAB DEL
+```
+
+It quickly yields the correct result (voluntarily not shown here).
+
+An alternative solution uses the algorithm for modular exponentiation presented above:
+
+```
+0 SPC          ;; current sum
 1 SPC 1000 Z(
    RET 10000000000 SPC
    1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL ;; modular exponentiation
