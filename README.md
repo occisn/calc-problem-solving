@@ -770,6 +770,11 @@ a+
 
 It yields the correct result (voluntarily not shown here).
 
+Variant:
+```
+'sum(prime(k)*k, k, 2, 1999999) 
+```
+
 <!-- 142913828922 -->
 
 ## Project Euler 11: Largest Product in a Grid
