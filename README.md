@@ -516,6 +516,12 @@ It yields the correct result (voluntarily not shown here).
 
 <!--- 6857 --->
 
+Algebraic variant:
+
+```
+'head(rev(prfac(600851475143)))
+```
+
 ## Project Euler 4: Largest Palindrome Product
 
 _A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.  
