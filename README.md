@@ -1191,6 +1191,11 @@ Both immediately yields the correct result (voluntarily not shown here).
 
 <!-- 8739992577 -->
 
+Variant with algebraic form and modulo form:
+```
+'((2 M-m 10000000000)**7830457)*28433+1
+```
+
 ## Annex: Emacs functions to quickly test Calc macros in Calc
 
 When the macro is written in any file:
