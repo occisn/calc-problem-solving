@@ -1156,6 +1156,11 @@ An alternative solution uses the algorithm for modular exponentiation presented 
 
 It yields the correct result (voluntarily not shown here) in around 20s on my standard laptop.
 
+Variant with algebraic form and modulo form:
+```
+'sum((k M-m 10000000000)**k, k, 1, 1000)
+```
+
 <!-- 9110846700 -->
 
 ## Project Euler 97: Large Non-Mersenne Prime
