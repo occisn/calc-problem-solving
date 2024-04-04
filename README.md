@@ -25,9 +25,7 @@ _All information and codes are included in the present README file._
 - [Divisors](#divisors)  
 - [Algebraic expressions](#algebraic-expressions)
 
-**Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), 
-[48](#project-euler-48-self-powers),
-[97](#project-euler-97-large-non-mersenne-prime)  
+**Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), ..., [16](#project-euler-16-power-digit-sum), ..., [20](#project-euler-20-factorial-digit-sum), ..., [48](#project-euler-48-self-powers), ..., [97](#project-euler-97-large-non-mersenne-prime)  
 
 [Annex](#annex-emacs-functions-to-quickly-test-calc-macros-in-calc)
 
@@ -1093,6 +1091,25 @@ What is the sum of the digits of 2^1000?_
 It yields the correct result (voluntarily not shown here).
 
 <!-- 1366 -->
+
+## Project Euler 20: Factorial Digit Sum
+
+_n! means n x (n-1) x ... x 3 x 2 x 1.  
+For example 10! = 10 x 9 x ... x 3 x 2 x 1 = 3628800,  
+and the sum of its digit in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.  
+Find the sum of the digits in the number 100!._  
+[(source)](https://projecteuler.net/problem=20)
+
+```
+100 !
+;; beginning of routine calculating the number of digits
+0 TAB Z{ RET 10 % RET C-u 4 C-M-i + C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
+;; end of routine
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!-- 648 -->
 
 ## Project Euler 48: Self Powers
 
