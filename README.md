@@ -1077,6 +1077,23 @@ It yields the correct result (voluntarily not shown here).
 
 <!-- 5500276230 -->
 
+## Project Euler 16: Power Digit Sum
+
+_2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.  
+What is the sum of the digits of 2^1000?_  
+[(source)](https://projecteuler.net/problem=16)
+
+```
+2 SPC 1000 ^
+;; beginning of routine calculating the number of digits
+0 TAB Z{ RET 10 % RET C-u 4 C-M-i + C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
+;; end of routine
+```
+
+It yields the correct result (voluntarily not shown here).
+
+<!-- 1366 -->
+
 ## Project Euler 48: Self Powers
 
 _The series, 1^1 + 2^2 + 3^3 + ... + 10^10 = 10405071317  
