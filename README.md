@@ -55,6 +55,7 @@ We will use this macro system to solve numeric puzzles as those proposed by Proj
 Copy code within GNU Emacs, select it, invoke `M-x read-kbd-macro`, go into Calc and press `X`.
 
 ## Standard Calc commands and useful macros
+
 ### Calculations
 
 ```
@@ -128,7 +129,7 @@ a<  return 1 if element #2 < element #1, and 0 otherwise
 
 ```
 v l         ;; length
-v p         ;; pack stack in a vector
+5 v p       ;; pack 5 elements of the top of the stack into a vector
 v v         ;; reverse vector
 v r 3 RET   ;; extract 3rd element of vector (for macro, use prefix argument ~)
 v x 20 RET  ;; returns vector [1, ..., 20]   (for macro, use prefix argument ~)
@@ -171,6 +172,8 @@ Note: the loop shall not be from 1 to 1: `1 1 Z( ... 1 n Z)` seems to fail.
 ### Stack manipulation commands
 
 ```
+5 v p        pack top elements of the top of the stack into a vector
+`            edit top element of the stack
 RET          (copy) duplicate top element; former stack content moves downward by 1 line
 C-u 2 RET    (copy) copy first two elements of the stack
 C-j          (copy) element #2 is copied on top of the stack; former stack content moves downward by 1 line
@@ -226,13 +229,15 @@ TAB RET H L F 1 + C-u 3 C-M-i - n f S F
 
 **For all digits.** The following code iterates on all digits of the first element of the stack (consumed).
 ``` 
-'acc TAB Z{ RET 10 % RET C-u 4 C-M-i
+'acc-initial-value TAB Z{ RET 10 % RET C-u 4 C-M-i
       ;; Stack;
-      ;;   2: acc
+      ;;   2: accumulator
       ;;   1: current digit
    ;; do something (which consumes top element of the stack)
 C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
 ```
+
+This routine is used in the following ones.
 
 **Sum of digits.** By successive divisions by 10, the following macro returns the sum of digits of the top element of the stack (consumed). For instance: 145 --> 10
 ```
