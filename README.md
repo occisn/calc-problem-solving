@@ -1201,10 +1201,13 @@ Variant with algebraic form and modulo form:
 
 ## Annex: Emacs functions to quickly test Calc macros in Calc
 
+The two Emacs Lisp functions below read Calc macros in a region or in a markdown file (surrounded by three backquote signs) and make it available in calc for execution with `X`.
+
 When the macro is written in any file:
 ``` emacs-lisp
 (defun my/calc-read-macro ()
-  "Interpret selected region as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03, last modification 2024-01-27)."
+  "Interpret selected region as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X.
+(v2 as of 2024-01-27, v1 as of 2024-01-23)"
   (interactive)
   (if (use-region-p)
       (let* ((region-as-string (buffer-substring-no-properties (region-beginning) (region-end))))
@@ -1222,7 +1225,8 @@ When the macro is written in any file:
 When the macro is written in markdown file:
 ```emacs-lisp
 (defun my/calc-select-markdown-code-and-read-calc-macro ()
-  "Select markdown code block surrounding the cursor, interpret it as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X (2024-01-03, last modification 2024-01-27)."
+  "Select markdown code block surrounding the cursor, interpret it as a Calc macro and jump to Calc stack, where the macro can be executed by pressing X.
+(v2 as of 2024-01-27, v1 as of 2024-01-23)"
   (interactive)
   (search-backward "```")
   (next-line)
@@ -1232,5 +1236,47 @@ When the macro is written in markdown file:
   (beginning-of-line)
   (my/calc-read-macro))
 ```
+
+The two Emacs Lisp functions below do the same but execute directly the macro, and measure the execution time.
+
+``` emacs-lisp
+(defun my/calc-read-and-execute-macro ()
+   "Interpret selected region as a Calc macro, jump to Calc stack, and execute it while printing execution duration as a message.
+(v1 as of 2025-01-12)"
+   (interactive)
+   (if (use-region-p)
+       (let* ((region-as-string (buffer-substring-no-properties (region-beginning) (region-end))))
+         (read-kbd-macro (region-beginning) (region-end))
+         (message "Ready to execute (X): %s ... %s"
+                  (substring region-as-string 0 10)
+                  (substring region-as-string -10 nil))
+         (let ((w (get-buffer-window "*Calculator*")))
+           (if (null w)
+               (message "No window is displaying Calc!")
+             (progn
+               (select-window w)
+               (let ((beginning-time2 (float-time)))
+                 (calc-call-last-kbd-macro nil) ; equivalent of X
+                 (let* ((end-time2 (float-time))
+                        (duration2 (* 1000 (float-time
+                                            (time-subtract end-time2 beginning-time2)))))
+                   (message "Calc macro executed in %.0f ms." duration2)))))))
+     (message "No region selected!")))
+```
+
+``` emacs-lisp
+(defun my/calc-select-markdown-code-read-and-execute-calc-macro ()
+  "Select markdown code block surrounding the cursor, interpret it as a Calc macro, jump to Calc stack and execute it while printing execution duration as a message.
+(v1 as of 2025-01-12)"
+  (interactive)
+  (search-backward "```")
+  (next-line)
+  (beginning-of-line)
+  (call-interactively 'set-mark-command)
+  (search-forward "```")
+  (beginning-of-line)
+  (my/calc-read-and-execute-macro))
+```
+
 
 ## (end of file)
