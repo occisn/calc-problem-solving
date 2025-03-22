@@ -27,7 +27,7 @@ _All information and codes are included in the present README file._
 
 **Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), ..., [16](#project-euler-16-power-digit-sum), ..., [20](#project-euler-20-factorial-digit-sum), ..., [48](#project-euler-48-self-powers), ..., [97](#project-euler-97-large-non-mersenne-prime)  
 
-[Annex](#annex-emacs-functions-to-quickly-test-calc-macros-in-calc)
+[Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration](#annex-emacs-or-calc-functions-to-quickly-test-calc-macros-in-calc-and-measure-execution-duration)
 
 ## Introduction
 
@@ -1199,9 +1199,9 @@ Variant with algebraic form and modulo form:
 '((2 M-m 10000000000)**7830457)*28433+1
 ```
 
-## Annex: Emacs functions to quickly test Calc macros in Calc
+## Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration
 
-The two Emacs Lisp functions below read Calc macros in a region or in a markdown file (surrounded by three backquote signs) and make it available in calc for execution with `X`.
+**a)** The two Emacs Lisp functions below read Calc macros in a region or in a markdown file (surrounded by three backquote signs) and make it available in calc for execution with `X`.
 
 When the macro is written in any file:
 ``` emacs-lisp
@@ -1237,7 +1237,7 @@ When the macro is written in markdown file:
   (my/calc-read-macro))
 ```
 
-The two Emacs Lisp functions below do the same but execute directly the macro, and measure the execution time.
+**b)** The two Emacs Lisp functions below do the same but execute directly the macro, and measure the execution time.
 
 ``` emacs-lisp
 (defun my/calc-read-and-execute-macro ()
@@ -1277,6 +1277,35 @@ The two Emacs Lisp functions below do the same but execute directly the macro, a
   (beginning-of-line)
   (my/calc-read-and-execute-macro))
 ```
+
+**c)** Another way to measure execution time is to define special command `d` (for instance), usable in Calc macro. This command pushes current time (in milliseconds) onto the stack
+
+``` emacs-lisp
+(defun calc-push-time-in-milliseconds ()
+  "Push time expressed in milliseconds into Calc stack."
+  (interactive)
+  (calc-push (round (* (float-time (current-time)) 1000))))
+
+(add-hook 'calc-mode-hook
+          (lambda ()
+            (local-set-key (kbd "d") 'calc-push-time-in-milliseconds)))
+```
+
+How to use it?
+
+Let's take the example of the macro proposed to solve Project Euler 20:
+
+```
+100 ! 0 TAB Z{ RET 10 % RET C-u 4 C-M-i + C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL
+```
+
+Let's add `d` at the beginning and `d C-u 3 C-M-i -` at the end:
+
+```
+d 100 ! 0 TAB Z{ RET 10 % RET C-u 4 C-M-i + C-u 3 TAB - RET 0 a= Z/ 10 \ Z} DEL d C-u 3 C-M-i -
+```
+
+It now yields the result and the execution duration expressed in ms.
 
 
 ## (end of file)
