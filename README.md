@@ -1201,6 +1201,8 @@ Variant with algebraic form and modulo form:
 
 ## Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration
 
+Whats follows seems to not work with algebraic expressions.
+
 **a)** The two Emacs Lisp functions below read Calc macros in a region or in a markdown file (surrounded by three backquote signs) and make it available in calc for execution with `X`.
 
 When the macro is written in any file:
