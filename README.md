@@ -4,6 +4,8 @@
 
 Hobby project using the macro programming features of stack-based GNU Emacs Calc, leading to esoteric-looking code, to solve numeric puzzles as those proposed by Project Euler or Rosetta code.
 
+This is a personal, exploratory project with no fixed roadmap. Its aim is essentially to improve my skills. Development happens irregularly as time permits.
+
 _All information and codes are included in the present README file._
 
 ## Table of contents
