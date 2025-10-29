@@ -8,6 +8,9 @@ This is a personal, exploratory project with no fixed roadmap. Its aim is essent
 
 _All information and codes are included in the present README file._
 
+Any comment? Open an [issue](https://github.com/occisn/calc-problem-solving/issues), or start a discussion [here](https://github.com/occisn/calc-problem-solving/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
+
+
 ## Table of contents
 
 [Introduction](#introduction)  
