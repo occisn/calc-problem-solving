@@ -144,6 +144,25 @@ v k         ;; add at the beginning of the list (cons)
 |           ;; append
 ```
 
+**Three ways to calculate vector mean:** (see [Rosetta Code](https://rosettacode.org/wiki/Averages/Arithmetic_mean))
+
+On the stack: `u M`
+
+Through Emacs Lisp :
+
+``` elisp
+(let ((x '(1 2 3 4)))
+  (calc-eval "vmean($1)" nil (append '(vec) x)))
+```
+
+``` elisp
+(let ((x '(1 2 3 4)))
+  (string-to-number
+   (math-format-value
+    (calcFunc-vmean (cons 'vec x)))))
+```
+
+
 ### Matrix manipulation
 
 ```
