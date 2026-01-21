@@ -146,20 +146,16 @@ v R ...     ;; reduce vector according to macro '...'
 V M ...     ;; map macro '...' to list
 v k         ;; add at the beginning of the list (cons)
 |           ;; append
+u M         ;; mean [0]
 ```
 
-**Three ways to calculate vector mean:** (see [Rosetta Code](https://rosettacode.org/wiki/Averages/Arithmetic_mean))
-
-On the stack: `u M`
-
-Through Emacs Lisp :
+[0] Emacs lisp functions to calculate mean:  
+(see also [Rosetta Code](https://rosettacode.org/wiki/Averages/Arithmetic_mean))
 
 ``` elisp
 (let ((x '(1 2 3 4)))
   (calc-eval "vmean($1)" nil (append '(vec) x)))
-```
 
-``` elisp
 (let ((x '(1 2 3 4)))
   (string-to-number
    (math-format-value
