@@ -32,6 +32,8 @@ Any comment? Open an [issue](https://github.com/occisn/calc-problem-solving/issu
 
 **Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), ..., [16](#project-euler-16-power-digit-sum), ..., [20](#project-euler-20-factorial-digit-sum), ..., [48](#project-euler-48-self-powers), ..., [97](#project-euler-97-large-non-mersenne-prime)  
 
+[Tupper's self-referential formula](#tupper-formula)
+
 [Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration](#annex-emacs-or-calc-functions-to-quickly-test-calc-macros-in-calc-and-measure-execution-duration)
 
 ## Introduction
@@ -1238,6 +1240,46 @@ Variant with algebraic form and modulo form:
 ```
 '((2 M-m 10000000000)**7830457)*28433+1
 ```
+
+## Tupper Formula
+
+Tupper's self-referential formula is a formula that visually represents itself when graphed on plane.
+
+See [Wikipedia](https://en.wikipedia.org/wiki/Tupper%27s_self-referential_formula) or [Wolfram MathWorld](https://mathworld.wolfram.com/TuppersSelf-ReferentialFormula.html).
+
+Formula:
+
+![formula](./pics/tupper-formula.png)
+
+```
+960939379918958884971672962127852754715004339660129306651505519271702802395266424689642842174350718121267153782770623355993237280874144307891325963941337723487857735749823926629715517173716995165232890538221612403238855866184013235585136048828693337902491454229288667081096184496091705183454067827731551705405381627380967602565625016981482083418783163849115590225610003652351370343874461848378737238198224849863465033159410054974700593138339226497249461751545728366702369745461014655997933798537483143786841806593422227898388722980000748404719 SPC 0 Z{ [ ] 105 Z{ TAB C-u 4 C-j C-u 4 C-j + RET 17 \ C-u 4 C-j 17 * C-u 3 C-M-i 17 % + 2 TAB ^ \ 2 % 0.5 a< Z[ 32 Z: 35 Z] | TAB 1 - RET 0 a< Z/ Z} DEL C-u 3 TAB 1 + RET 16 TAB a< Z/ Z} DEL DEL
+```
+
+Also press `d "` so that arrays of integers be printed as strings. 
+
+Output:
+```
+17: "        #                   #                # ## #     #                #  # #     #    # ## #      #   #"
+16: "        #                   # #      #       #  # #     #                #  # #     #    #  # #      #   #"
+15: "##      #                  #  #      #    ## #  # # # # # ## ####  ### ### #  # # # #    #  #  #      #  #"
+14: " #      #                  #  #  # # #       # #  #  #  #    # # # # # # # #  # # # #    # #   #      #  #"
+13: " #      #                  #  #  # # #       # #  # # # #    # # # ### ### #  #  #  #    # #   #      #  #"
+12: " #      #               # #   #   #  #  ##        #     #                  #  # #   #  #       #   ##  # #"
+11: "###   # #               # #   #  #   # #  #       #     #                   # #     #  #      #   #  # # #"
+10: "     #  # ## #   ##   ### #   #      #   #        ### ###                   # ### ### #       #     #  # #"
+9:  "### #   # # # # #  # #  # #   # #### #  #                                                          #   # #"
+8:  "     #  # # # # #  # #  # #   #      # #                                                          #    # #"
+7:  "##    # # # # #  ##   ### #   # # ## # ####                                                       #### # #"
+6:  "  #     #                 #   # #  # #                                                          #      # #"
+5:  " #      #                  #  # #  # #                                                          #     #  #"
+4:  "#       #                  #  # # #  #                                                         #      #  #"
+3:  "###     #                  #  # # #  #                                                                #  #"
+2:  "        #                   # #      #                                                               #   #"
+1:  "        ###                 # ###  ###                                                               # ###"
+```
+
+I have added this code to [Rosetta Code](https://rosettacode.org/wiki/Tupper%27s_self-referential_formula).
+
 
 ## Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration
 
