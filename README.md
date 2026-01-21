@@ -32,9 +32,9 @@ Any comment? Open an [issue](https://github.com/occisn/calc-problem-solving/issu
 
 **Project Euler problems:** [1](#project-euler-1-multiples-of-3-or-5), [2](#project-euler-2-even-fibonacci-numbers), [3](#project-euler-3-largest-prime-factor), [4](#project-euler-4-largest-palindrome-product), [5](#project-euler-5-smallest-multiple), [6](#project-euler-6-sum-square-difference), [7](#project-euler-7-10-001st-prime), [8](#project-euler-8-largest-product-in-a-series), [9](#project-euler-9-special-pythagorean-triplet), [10](#project-euler-10-summation-of-primes), [11](#project-euler-11-largest-product-in-a-grid), [12](#project-euler-12-highly-divisible-triangular-number), [13](#project-euler-13-large-sum), ..., [16](#project-euler-16-power-digit-sum), ..., [20](#project-euler-20-factorial-digit-sum), ..., [48](#project-euler-48-self-powers), ..., [97](#project-euler-97-large-non-mersenne-prime)  
 
-[Tupper's self-referential formula](#tupper-formula)
+[**Tupper's self-referential formula**](#tupper-formula)
 
-[Annex: Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration](#annex-emacs-or-calc-functions-to-quickly-test-calc-macros-in-calc-and-measure-execution-duration)
+[**Annex:** Emacs or calc functions to quickly test Calc macros in Calc and measure execution duration](#annex-emacs-or-calc-functions-to-quickly-test-calc-macros-in-calc-and-measure-execution-duration)
 
 ## Introduction
 
@@ -60,6 +60,8 @@ We will use this macro system to solve numeric puzzles as those proposed by Proj
 ## How to use below codes
 
 Copy code within GNU Emacs, select it, invoke `M-x read-kbd-macro`, go into Calc and press `X`.
+
+Or use Emacs helper functions proposed in [Annex](#annex-emacs-or-calc-functions-to-quickly-test-calc-macros-in-calc-and-measure-execution-duration).
 
 ## Standard Calc commands and useful macros
 
