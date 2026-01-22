@@ -92,11 +92,17 @@ f x    max
 
 ### Modulo forms
 
-To enter modulo form : `2 S-M 15~ SPC` for 2 mod 25 [(manual)](https://www.gnu.org/software/emacs/manual/html_node/calc/Modulo-Forms.html)
+To enter modulo form : `2 S-M 25 SPC` for 2 mod 25 [(manual)](https://www.gnu.org/software/emacs/manual/html_node/calc/Modulo-Forms.html). When you type directly in the stack, it should be `2M25`
+
+To create a modulo form from the two last elements on stack : `C-u -5 v p` (pack)  
+To unpack a modulo form from the stack: `v u` (unpack)
 
 Trick: to convert an integer into modulo form, just multiply 1 mod xx by it.
 
-**Modular exponentiation.** It could be done immediatly by using modulo form. For the pleasure of it, we could also code an algorithm, using [right-to-left binary method](https://en.wikipedia.org/wiki/Modular_exponentiation#Right-to-left_binary_method); it replaces stack containing `3: b 2: e 1: m` by `b^e mod m`
+**Modular exponentiation.** First enter the modulo form, then exponentiate.  
+I have added an example in [Rosetta Code](https://rosettacode.org/wiki/Modular_exponentiation#Calc).
+
+For the pleasure of it, we could also code an algorithm, using [right-to-left binary method](https://en.wikipedia.org/wiki/Modular_exponentiation#Right-to-left_binary_method); it replaces stack containing `3: b 2: e 1: m` by `b^e mod m`
 
 ```
 1 SPC C-u 4 C-M-i C-u 3 C-j % C-u 4 TAB Z{ C-u 3 C-j 0 a= Z/ C-u 3 C-j
@@ -104,7 +110,7 @@ Trick: to convert an integer into modulo form, just multiply 1 mod xx by it.
 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL
 ```
 
-Modulo forms in algebraic entry: `3 M-m 1000` 
+Modulo forms in algebraic entry: `3 mod 1000` 
 
 ### Primes
 
