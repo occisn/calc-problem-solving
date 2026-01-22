@@ -99,6 +99,8 @@ To unpack a modulo form from the stack: `v u` (unpack)
 
 Trick: to convert an integer into modulo form, just multiply 1 mod xx by it.
 
+Modulo forms in algebraic entry: `3 mod 1000` 
+
 **Modular exponentiation.** First enter the modulo form, then exponentiate.  
 I have added an example in [Rosetta Code](https://rosettacode.org/wiki/Modular_exponentiation#Calc).
 
@@ -109,8 +111,6 @@ For the pleasure of it, we could also code an algorithm, using [right-to-left bi
 2 SPC % 1 a= Z[ C-u 4 C-j * C-j % Z] C-u 3 C-M-i b r C-u 3 TAB C-u 4
 C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL
 ```
-
-Modulo forms in algebraic entry: `3 mod 1000` 
 
 ### Primes
 
