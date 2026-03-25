@@ -119,6 +119,7 @@ C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL
 ```
 k f             prime factorization as vector (prfac)
 k n             next prime
+I k n           previous prime
 k p             is prime? (does not consume element, and print result in echo)
 prime(k)        is prime? 0/1
 'prime($1) RET  is prime? 0/1
@@ -153,7 +154,7 @@ v x 20 RET  ;; returns vector [1, ..., 20]   (for macro, use prefix argument ~)
 v R ...     ;; reduce vector according to macro '...'
 V M ...     ;; map macro '...' to list
 v k         ;; add at the beginning of the list (cons)
-|           ;; append
+| ;; append |
 u M         ;; mean [0]
 ```
 
