@@ -6,8 +6,6 @@ Hobby project using GNU Emacs Calc through stack-based RPN calculations grouped 
 
 Algebraic expressions are avoided, even if equivalences may be proposed.
 
-This is a personal, exploratory project with no fixed roadmap. Its aim is essentially to improve my skills. Development happens irregularly as time permits.
-
 _All information and codes are included in the present README file._
 
 Any comment? Open an [issue](https://github.com/occisn/calc-problem-solving/issues), or start a discussion [here](https://github.com/occisn/calc-problem-solving/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
