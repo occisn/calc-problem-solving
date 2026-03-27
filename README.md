@@ -1,6 +1,6 @@
 <!-- conventional commits: https://www.conventionalcommits.org/en/v1.0.0/ -->
 
-# calc-programming
+# calc-problem-solving
 
 Hobby project using GNU Emacs Calc through stack-based RPN calculations grouped in macros, leading to esoteric-looking code, to solve numeric puzzles as those proposed by Project Euler or Rosetta code.
 
@@ -502,21 +502,6 @@ With 1,000,000 as an input, it returns 233,333,166,668 in less than 20 seconds.
 
 ```
 'sum( ( ((k%3)=0) + ((k%5)=0) > 0 ) * k, k, 1, 999999)
-```
-
-Note: my program [cl-calc2lisp](https://github.com/occisn/cl-lisp2calc) generates the following instructions:
-```
-1000 SPC 0 SPC 0 Z{ RET C-u 4 C-j 1 - a> Z/ 0 C-j 3 % C-u 3 C-j 5 % * a= Z[ C-j C-j + C-u 3 M-DEL TAB Z: Z] RET 1 + M-DEL C-u 1 TAB Z} DEL RET M-DEL M-DEL
-```
-by converting the following Common Lisp code :
-``` lisp
-(cl-cl2calc:convert
- '(let ((n 1000)
-        (res 0))
-   (dotimes (i n)
-     (when (= 0 (* (mod i 3) (mod i 5)))
-       (setq res (+ res i))))
-   res))
 ```
 
 ## Project Euler 2: Even Fibonacci Numbers
