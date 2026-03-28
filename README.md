@@ -10,6 +10,9 @@ _All information and codes are included in the present README file._
 
 Any comment? Open an [issue](https://github.com/occisn/calc-problem-solving/issues), or start a discussion [here](https://github.com/occisn/calc-problem-solving/discussions) or [at profile level](https://github.com/occisn/occisn/discussions).
 
+Related projects:  
+\- [Converter](https://github.com/occisn/cl-lisp2calc) from Common Lisp to GNU Calc  
+\- [calc-llm](https://github.com/occisn/calc-llm): LLM to convert numerical puzzle into GNU Calc
 
 ## Table of contents
 
