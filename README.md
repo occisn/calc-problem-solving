@@ -118,7 +118,8 @@ C-M-i RET * C-u 3 C-j % C-u 4 TAB Z} TAB DEL TAB DEL TAB DEL
 k f             prime factorization as vector (prfac)
 k n             next prime
 I k n           previous prime
-k p             is prime? (does not consume element, and print result in echo)
+k p             is prime? (does not modify stack, only print result in echo)
+k f v l 1 a=    is prime?
 prime(k)        is prime? 0/1
 'prime($1) RET  is prime? 0/1
 ```
