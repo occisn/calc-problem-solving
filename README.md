@@ -1237,6 +1237,8 @@ Variant with algebraic form and modulo form:
 
 ## Tupper Formula
 
+Blog post: [https://www.effectivelambda.org/en/blog/006-tuppers-self-referential-formula.html](https://www.effectivelambda.org/en/blog/006-tuppers-self-referential-formula.html)
+
 Tupper's self-referential formula is a formula that visually represents itself when graphed on plane.
 
 See [Wikipedia](https://en.wikipedia.org/wiki/Tupper%27s_self-referential_formula) or [Wolfram MathWorld](https://mathworld.wolfram.com/TuppersSelf-ReferentialFormula.html).
